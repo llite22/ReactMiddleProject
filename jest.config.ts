@@ -34,11 +34,16 @@ const config: Config = {
   moduleDirectories: [
     "node_modules"
   ],
-  rootDir: './',
+  rootDir: '.',
   testMatch: ["<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"
   ],
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
+  moduleNameMapper: {
+    "\\.s?css$": "identity-obj-proxy",
+    '@/(.*)': '<rootDir>/src/$1',
   }
 
   // Indicates whether the coverage information should be collected while executing the test
