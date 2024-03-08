@@ -3,10 +3,16 @@
   color: var(--primary-color);
 }
 
-.clear {
+.clear,
+.clearInverted {
+  padding: 0;
   border: none;
   background: none;
   outline: none;
+}
+
+.clearInverted {
+  color: var(--inverted-primary-color);
 }
 
 .outline {
@@ -17,12 +23,14 @@
 }
 
 .background {
+  padding: 0;
   background: var(--bg-color);
   color: var(--primary-color);
   border: none;
 }
 
 .backgroundInverted {
+  padding: 0;
   background: var(--inverted-bg-color);
   color: var(--inverted-primary-color);
   border: none;
@@ -35,17 +43,17 @@
 .square.size_m {
   width: var(--font-line-m);
   height: var(--font-line-m);
-  font: var(--font-m)
+  font: var(--font-m);
 }
 
 .square.size_l {
   width: var(--font-line-l);
   height: var(--font-line-l);
-  font: var(--font-ml)
+  font: var(--font-ml);
 }
 
 .square.size_xl {
   width: var(--font-line-xl);
   height: var(--font-line-xl);
-  font: var(--font-xl)
+  font: var(--font-xl);
 }
