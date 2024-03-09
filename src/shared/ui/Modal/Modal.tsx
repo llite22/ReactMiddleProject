@@ -56,9 +56,6 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     };
   }, [isOpen, onKeyDown]);
 
-  console.log(theme);
-  
-
   return (
     <div className={classNames(cls.Modal, mods, [className, theme])}>
       <div className={cls.overlay} onClick={closeHandler}>
