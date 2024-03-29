@@ -1,27 +1,36 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
-import cls from "./Modal.module.scss";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Portal } from "../Portal/Portal";
 import { useTheme } from "@/app/providers/ThemeProvider";
+import { Portal } from "../Portal/Portal";
+import cls from "./Modal.module.scss";
 
 interface ModalProps {
   className?: string;
   children?: React.ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  lazy?: boolean;
 }
 
 const ANIMATION_DEALY = 300;
 
-export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
+export const Modal = ({
+  className,
+  children,
+  isOpen,
+  onClose,
+  lazy,
+}: ModalProps) => {
   const [isClosing, setIsClosing] = useState<boolean>(false);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const timeRef = useRef<NodeJS.Timeout>();
   const { theme } = useTheme();
 
-  const mods: Record<string, boolean> = {
-    [cls.opened]: isOpen,
-    [cls.isClosing]: isClosing,
-  };
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
 
   const closeHandler = useCallback(() => {
     if (onClose) {
@@ -56,13 +65,24 @@ export const Modal = ({ className, children, isOpen, onClose }: ModalProps) => {
     };
   }, [isOpen, onKeyDown]);
 
+  const mods: Record<string, boolean> = {
+    [cls.opened]: isOpen,
+    [cls.isClosing]: isClosing,
+  };
+
+  if (lazy && !isMounted) {
+    return null;
+  }
+
   return (
-    <div className={classNames(cls.Modal, mods, [className, theme])}>
-      <div className={cls.overlay} onClick={closeHandler}>
-        <div className={cls.content} onClick={onContentClick}>
-          {children}
+    <Portal>
+      <div className={classNames(cls.Modal, mods, [className, theme])}>
+        <div className={cls.overlay} onClick={closeHandler}>
+          <div className={cls.content} onClick={onContentClick}>
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </Portal>
   );
 };
