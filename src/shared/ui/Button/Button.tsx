@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes } from "react";
 export enum ThemeButton {
   CLEAR = "clear",
   CLEAR_INVERTED = "clearInverted",
-  OTLINE = "outline",
+  OUTLINE = "outline",
   BACKGROUND = "background",
   BACKGROUND_INVERTED = "backgroundInverted",
 }
@@ -22,6 +22,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: ThemeButton;
   square?: boolean;
   size?: ButtonSize;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -29,17 +30,24 @@ export const Button = ({
   children,
   theme,
   square,
+  disabled,
   size = ButtonSize.M,
   ...otherProps
 }: ButtonProps) => {
+  const mods: Record<string, boolean> = {
+    [cls.square]: square,
+    [cls.disabled]: disabled,
+  };
+
   return (
     <button
       type="button"
-      className={classNames(cls.Button, { [cls.square]: square }, [
+      className={classNames(cls.Button, mods, [
         className || "",
         cls[theme || ""],
         cls[size],
       ])}
+      disabled={disabled}
       {...otherProps}
     >
       {children}
