@@ -55,7 +55,7 @@ export const Input = memo(
     };
 
     return (
-      <div className={classNames(cls.InputWrapper, {}, [className])}>
+      <div className={classNames(cls.InputWrapper, {}, [className || ''])}>
         <div className={cls.placeholder}>{`${placeholder}>`}</div>
         <div className={cls.caretWrapper}>
           <input

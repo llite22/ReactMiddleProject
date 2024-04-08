@@ -17,7 +17,10 @@ interface AppLinkProps extends NavLinkProps {
 export const AppLink = (props: AppLinkProps) => {
   const { to, className, children, theme = AppLinkTheme.PRIMARY } = props;
   return (
-    <NavLink to={to} className={classNames(cls.AppLink, {}, [className, cls[theme]])}>
+    <NavLink
+      to={to}
+      className={classNames(cls.AppLink, {}, [className || "", cls[theme]])}
+    >
       {children}
     </NavLink>
   );

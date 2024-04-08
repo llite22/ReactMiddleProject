@@ -8,5 +8,7 @@
   "Главная": "Main",
   "О сайте": "Abot us",
   "Введите имя": "Enter name",
-  "Введите пароль": "Enter password"
+  "Введите пароль": "Enter password",
+  "Форма авторизации": "Login form",
+  "Вы ввели неверный лоий или пароль": "Wrong login or password"
 }

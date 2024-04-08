@@ -11,7 +11,7 @@ import MainIcon from "@/shared/assets/icons/main.svg?react";
 import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
-  className: string;
+  className?: string;
 }
 
 export const Sidebar = ({ className }: SidebarProps) => {
@@ -25,7 +25,7 @@ export const Sidebar = ({ className }: SidebarProps) => {
   return (
     <div
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-        className,
+        className || "",
       ])}
     >
       <Button

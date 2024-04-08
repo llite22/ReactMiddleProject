@@ -34,7 +34,7 @@ export const Button = ({
   size = ButtonSize.M,
   ...otherProps
 }: ButtonProps) => {
-  const mods: Record<string, boolean> = {
+  const mods: Record<string, boolean | undefined> = {
     [cls.square]: square,
     [cls.disabled]: disabled,
   };
