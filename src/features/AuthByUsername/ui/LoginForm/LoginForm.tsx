@@ -61,14 +61,14 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
           placeholder={t("Введите имя")}
           autofocus
           onChange={onChangeUsername}
-          value={username || ""}
+          value={username}
         />
         <Input
           type="text"
           className={cls.input}
           placeholder={t("Введите пароль")}
           onChange={onChangePassword}
-          value={password || ""}
+          value={password}
         />
         <Button
           theme={ThemeButton.OUTLINE}
