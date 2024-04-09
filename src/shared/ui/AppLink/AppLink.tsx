@@ -1,7 +1,7 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./AppLink.module.scss";
 import { NavLink, NavLinkProps } from "react-router-dom";
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 
 export enum AppLinkTheme {
   PRIMARY = "primary",
@@ -14,7 +14,7 @@ interface AppLinkProps extends NavLinkProps {
   children: ReactNode;
 }
 
-export const AppLink = (props: AppLinkProps) => {
+export const AppLink = memo((props: AppLinkProps) => {
   const { to, className, children, theme = AppLinkTheme.PRIMARY } = props;
   return (
     <NavLink
@@ -24,4 +24,4 @@ export const AppLink = (props: AppLinkProps) => {
       {children}
     </NavLink>
   );
-};
+});
