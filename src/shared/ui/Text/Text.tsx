@@ -19,7 +19,7 @@ export const Text = memo(
     return (
       <div
         className={classNames(cls.Text, { [cls[theme]]: true }, [
-          className || "",
+          className,
         ])}
       >
         {title && <p className={cls.title}>{title}</p>}

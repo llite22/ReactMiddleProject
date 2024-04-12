@@ -19,7 +19,7 @@ export const AppLink = memo((props: AppLinkProps) => {
   return (
     <NavLink
       to={to}
-      className={classNames(cls.AppLink, {}, [className || "", cls[theme]])}
+      className={classNames(cls.AppLink, {}, [className, cls[theme]])}
     >
       {children}
     </NavLink>
