@@ -13,3 +13,7 @@ declare module "*.svg?react" {
     const ReactComponent: SVGComponent;
     export default ReactComponent;
 }
+
+declare const __IS_DEV__: boolean
+declare const __API__: string
+

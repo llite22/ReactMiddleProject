@@ -9,13 +9,13 @@ import { PageError } from "./widgets/PageError/ui/PageError";
 import { StoreProvider } from "./app/providers/StoreProvider";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <StoreProvider>
-    <BrowserRouter>
+  <BrowserRouter>
+    <StoreProvider>
       <ErrorBoundary fallback={<PageError />}>
         <ThemeProvider>
           <App />
         </ThemeProvider>
       </ErrorBoundary>
-    </BrowserRouter>
-  </StoreProvider>
+    </StoreProvider>
+  </BrowserRouter>
 );
