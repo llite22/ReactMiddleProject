@@ -3,9 +3,9 @@ import { Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInited, userActions } from "@/entities/User";
 import { useTheme } from "./providers/ThemeProvider/lib/useTheme";
-import AppRouter from "./providers/router/ui/AppRouter";
 import { Navbar } from "@/widgets/Navbar";
 import { Sidebar } from "@/widgets/Sidebar";
+import { AppRouter } from "./providers/router";
 
 const App = () => {
   const { theme } = useTheme();
