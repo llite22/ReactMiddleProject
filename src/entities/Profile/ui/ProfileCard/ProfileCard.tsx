@@ -7,7 +7,7 @@ import { Profile } from "../../model/types/profile";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import { Currency, CurrencySelect } from "@/entities/Currency";
-import { CountrySelect } from "@/entities/County";
+import { Country, CountrySelect } from "@/entities/County";
 
 interface ProfileCardProps {
   className?: string;
@@ -22,7 +22,7 @@ interface ProfileCardProps {
   onChangeUsername?: (value?: string) => void;
   onChangeAvatar?: (value?: string) => void;
   onChangeCurrency?: (currency: Currency) => void;
-  onChangeCountry?: (country: string) => void;
+  onChangeCountry?: (country: Country) => void;
 }
 
 export const ProfileCard = ({

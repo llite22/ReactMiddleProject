@@ -11,5 +11,11 @@
   "Введите имя пользователя": "Enter username",
   "Введите ссылку на аватар": "Enter avatar link",
   "Укажите валюту": "Select currency",
-  "Укажите страну": "Select country"
+  "Укажите страну": "Select country",
+  "Серверная ошибка при сохранении": "Server error during saving",
+  "Имя и фамилия обязательны": "Name and surname are required",
+  "Некорректный возраст": "Incorrect age",
+  "Некорректная страна": "Incorrect country",
+  "Некорректный город": "Incorrect city",
+  "Данные не указаны": "Data not specified"
 }
