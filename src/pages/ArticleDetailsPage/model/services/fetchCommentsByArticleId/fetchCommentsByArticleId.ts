@@ -6,6 +6,7 @@ import { Comment } from "@/entities/Comment"
 export const fetchCommentsByArticleId = createAsyncThunk<Comment[], string | undefined, ThunkConfig<string>>(
     'articleDetails/fetchCommentsByArticleId',
     async (articleId, { extra, rejectWithValue }) => {
+
         if (!articleId) {
             return rejectWithValue(i18n.t('id not found'))
         }

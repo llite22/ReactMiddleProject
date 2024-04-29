@@ -10,7 +10,7 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
 import { useSelector } from "react-redux";
 import {
-  getArticleDetails,
+  getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
@@ -39,7 +39,7 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const isLoading = useSelector(getArticleDetailsIsLoading);
-  const article = useSelector(getArticleDetails);
+  const article = useSelector(getArticleDetailsData);
   const error = useSelector(getArticleDetailsError);
 
   const renderBlock = useCallback((block: ArticleBlock) => {

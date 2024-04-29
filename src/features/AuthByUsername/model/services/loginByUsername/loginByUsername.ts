@@ -22,7 +22,7 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, Thun
             dispatch(userActions.setAuthData(response.data))
             return response.data
         } catch (e) {
-            return rejectWithValue(i18n.t('Вы ввели неверный лоий или пароль'))
+            return rejectWithValue(i18n.t('Вы ввели неверный логин или пароль'))
         }
     },
 )

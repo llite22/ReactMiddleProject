@@ -1,5 +1,4 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
-import cls from "./ProfilePage.module.scss";
 import { memo, useCallback, useEffect } from "react";
 import {
   DynamicModuleLoader,
@@ -23,6 +22,7 @@ import { Currency } from "@/entities/Currency";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { Country } from "@/entities/County";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 const reducers: ReducerList = {
   profile: profileReducer,
@@ -40,6 +40,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
+  const { id } = useParams<{ id: string }>();
   const validateErrorTranslate = {
     [ValidateProfileError.SERVER_ERROR]: t("Серверная ошибка при сохранении"),
     [ValidateProfileError.INCORRECT_USER_DATA]: t("Имя и фамилия обязательны"),
@@ -50,7 +51,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
   };
 
   useEffect(() => {
-    dispatch(fetchProfileData());
+    if (id) {
+      dispatch(fetchProfileData(id));
+    }
   }, [dispatch]);
 
   const onChangeFirstname = useCallback(
@@ -115,7 +118,11 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         <ProfilePageHeader />
         {validateErrors?.length &&
           validateErrors.map((err) => (
-            <Text theme={TextTheme.ERROR} text={validateErrorTranslate[err]} key={err} />
+            <Text
+              theme={TextTheme.ERROR}
+              text={validateErrorTranslate[err]}
+              key={err}
+            />
           ))}
         <ProfileCard
           data={formData}
