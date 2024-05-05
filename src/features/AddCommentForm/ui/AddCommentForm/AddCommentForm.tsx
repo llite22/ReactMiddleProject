@@ -66,7 +66,7 @@ const addCommentForm = memo(
         <div className={classNames(cls.addCommentForm, {}, [className])}>
           <Input
             placeholder={t("Введите текст комментария")}
-            value={text || ''}
+            value={text}
             onChange={onCommentTextChange}
             className={cls.input}
           />

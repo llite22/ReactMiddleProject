@@ -2,16 +2,12 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticleListItem.module.scss";
 import { memo } from "react";
 import { ArticleView } from "../../model/types/article";
-import { Text } from "@/shared/ui/Text/Text";
 import { Card } from "@/shared/ui/Card/Card";
-import { Avatar } from "@/shared/ui/Avatar/Avatar";
-import { Button, ThemeButton } from "@/shared/ui/Button/Button";
-import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 
 interface ArticleListItemSkeletonProps {
   className?: string;
-  view?: ArticleView;
+  view: ArticleView;
 }
 
 export const ArticleListItemSkeleton = memo(

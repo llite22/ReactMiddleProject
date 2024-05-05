@@ -1,4 +1,4 @@
-import { Country } from "@/entities/County";
+import { Country } from "@/entities/Country";
 import { Currency } from "@/entities/Currency";
 
 export enum ValidateProfileError {

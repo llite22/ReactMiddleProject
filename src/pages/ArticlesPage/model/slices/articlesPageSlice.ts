@@ -17,7 +17,7 @@ const articlesAdapter = createEntityAdapter({
 export const getArticles = articlesAdapter.getSelectors<StateSchema>((state) => state.articlesPage || articlesAdapter.getInitialState())
 
 const articlesPageSlice = createSlice({
-    name: 'articlesPageSlice',
+    name: 'articlesPage',
     initialState: articlesAdapter.getInitialState<ArticlesPageSchema>({
         isLoading: false,
         error: undefined,

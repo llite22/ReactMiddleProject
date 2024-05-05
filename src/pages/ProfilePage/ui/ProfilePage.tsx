@@ -20,11 +20,11 @@ import { useSelector } from "react-redux";
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 import { Currency } from "@/entities/Currency";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
-import { Country } from "@/entities/County";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Page } from "@/shared/ui/Page/Page";
+import { Page } from "@/widgets/Page/Page";
+import { Country } from "@/entities/Country";
 
 const reducers: ReducerList = {
   profile: profileReducer,

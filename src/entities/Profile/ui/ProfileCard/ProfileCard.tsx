@@ -7,7 +7,7 @@ import { Profile } from "../../model/types/profile";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import { Currency, CurrencySelect } from "@/entities/Currency";
-import { Country, CountrySelect } from "@/entities/County";
+import { Country, CountrySelect } from "@/entities/Country";
 
 interface ProfileCardProps {
   className?: string;

@@ -2,7 +2,7 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { Select } from "@/shared/ui/Select/Select";
 import { useTranslation } from "react-i18next";
 import { memo, useCallback } from "react";
-import { Country } from "../../model/types/county";
+import { Country } from "../../model/types/country";
 
 interface CountrySelectProps {
   className?: string;
