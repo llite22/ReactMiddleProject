@@ -24,6 +24,7 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
+import { Text, TextAlign, TextTheme } from "@/shared/ui/Text/Text";
 
 interface ArticlesPageProps {
   className?: string;
@@ -52,6 +53,19 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     dispatch(fetchArticlesList());
     dispatch(articlesPageActions.initState());
   }, [dispatch]);
+
+  if (error) {
+    return (
+      <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+        <Text
+          theme={TextTheme.ERROR}
+          title={t("Произошла ошибка при загрузке статей")}
+          text={t("Попробуйте обновить страницу")}
+          align={TextAlign.CENTER}
+        />
+      </div>
+    );
+  }
 
   return (
     <DynamicModuleLoader reducers={reducers}>
