@@ -5,6 +5,7 @@ import { UserSchema } from "@/entities/User";
 import { addCommentFormSchema } from "@/features/AddCommentForm";
 import { LoginSchema } from "@/features/AuthByUsername";
 import { ArticleDetailsCommentsSchema } from "@/pages/ArticleDetailsPage";
+import { ArticlesPageSchema } from "@/pages/ArticlesPage";
 import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
 import { NavigateOptions, To } from "react-router-dom";
@@ -19,6 +20,7 @@ export interface StateSchema {
     articleDetails?: ArticleDetailsSchema
     articleDetailsComments?: ArticleDetailsCommentsSchema
     addCommentForm?: addCommentFormSchema
+    articlesPage?: ArticlesPageSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

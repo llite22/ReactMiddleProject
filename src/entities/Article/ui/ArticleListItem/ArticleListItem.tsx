@@ -21,7 +21,7 @@ import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
 interface ArticleListItemProps {
   className?: string;
   article: Article;
-  view?: ArticleView;
+  view: ArticleView;
 }
 
 export const ArticleListItem = memo(
@@ -82,6 +82,7 @@ export const ArticleListItem = memo(
     return (
       <div
         className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+        onClick={onOpenArticle}
       >
         <Card>
           <div className={cls.imageWrapper}>
