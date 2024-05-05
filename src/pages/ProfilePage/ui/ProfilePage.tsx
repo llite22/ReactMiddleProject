@@ -16,13 +16,15 @@ import {
   profileReducer,
   ValidateProfileError,
 } from "@/entities/Profile";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ProfilePageHeader } from "./ProfilePageHeader/ProfilePageHeader";
 import { Currency } from "@/entities/Currency";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { Country } from "@/entities/County";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { Page } from "@/shared/ui/Page/Page";
 
 const reducers: ReducerList = {
   profile: profileReducer,
@@ -34,7 +36,7 @@ interface ProfilePageProps {
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
   const { t } = useTranslation("profile");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const formData = useSelector(getProfileForm);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
@@ -114,7 +116,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div className={classNames("", {}, [className])}>
+      <Page className={classNames("", {}, [className])}>
         <ProfilePageHeader />
         {validateErrors?.length &&
           validateErrors.map((err) => (
@@ -138,7 +140,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
           onChangeCurrency={onChangeCurrency}
           onChangeCountry={onChangeCountry}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 });

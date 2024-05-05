@@ -1,11 +1,12 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./Navbar.module.scss";
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { Button, ThemeButton } from "@/shared/ui/Button/Button";
 import { useTranslation } from "react-i18next";
 import { LoginModal } from "@/features/AuthByUsername";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { getUserAuthData, userActions } from "@/entities/User";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 interface NavbarProps {
   className?: string;
@@ -15,7 +16,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const [isAuthModal, setIsAuthModal] = useState<boolean>(false);
   const { t } = useTranslation();
   const authData = useSelector(getUserAuthData);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onCloseModal = useCallback(() => {
     setIsAuthModal(false);
@@ -31,7 +32,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
   if (authData) {
     return (
-      <div className={classNames(cls.navbar, {}, [className])}>
+      <header className={classNames(cls.navbar, {}, [className])}>
         <Button
           theme={ThemeButton.CLEAR_INVERTED}
           className={cls.links}
@@ -39,12 +40,12 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         >
           {t("Выйти")}
         </Button>
-      </div>
+      </header>
     );
   }
 
   return (
-    <div className={classNames(cls.navbar, {}, [className])}>
+    <header className={classNames(cls.navbar, {}, [className])}>
       <Button
         theme={ThemeButton.CLEAR_INVERTED}
         className={cls.links}
@@ -55,6 +56,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
       {isAuthModal && (
         <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
       )}
-    </div>
+    </header>
   );
 });
