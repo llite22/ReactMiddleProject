@@ -4,20 +4,22 @@ import { getArticlesPageInited } from "../../selectors/articlesPageSelectors";
 import { articlesPageActions } from "../../slices/articlesPageSlice";
 import { fetchArticlesList } from "../fetchArticlesList/fetchArticlesList";
 import { SortOrder } from "@/shared/types";
-import { ArticleSortField } from "@/entities/Article";
+import { ArticleSortField, ArticleType } from "@/entities/Article";
 
-interface ActionsMapkey {
+type ActionsMapkey = {
     [key: string]: ActionCreatorWithPayload<any, string>;
     order: ActionCreatorWithPayload<SortOrder, 'articlesPage/setOrder'>;
     sort: ActionCreatorWithPayload<ArticleSortField, 'articlesPage/setSort'>;
     search: ActionCreatorWithPayload<string, 'articlesPage/setSearch'>;
+    type: ActionCreatorWithPayload<ArticleType, 'articlesPage/setType'>;
 }
 
 
 const actionsMapkey: ActionsMapkey = {
     'order': articlesPageActions.setOrder,
     'sort': articlesPageActions.setSort,
-    'search': articlesPageActions.setSearch
+    'search': articlesPageActions.setSearch,
+    'type': articlesPageActions.setType
 }
 
 
