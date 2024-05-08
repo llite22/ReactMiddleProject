@@ -4,7 +4,7 @@ import { ProfileSchema } from "@/entities/Profile";
 import { UserSchema } from "@/entities/User";
 import { addCommentFormSchema } from "@/features/AddCommentForm";
 import { LoginSchema } from "@/features/AuthByUsername";
-import { ArticleDetailsCommentsSchema } from "@/pages/ArticleDetailsPage";
+import { ArticleDatilsPageSchema } from "@/pages/ArticleDetailsPage";
 import { ArticlesPageSchema } from "@/pages/ArticlesPage";
 import { ScrollSaveSchema } from "@/widgets/Page/ScrollSave";
 import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from "@reduxjs/toolkit";
@@ -19,9 +19,9 @@ export interface StateSchema {
     loginForm?: LoginSchema
     profile?: ProfileSchema
     articleDetails?: ArticleDetailsSchema
-    articleDetailsComments?: ArticleDetailsCommentsSchema
     addCommentForm?: addCommentFormSchema
     articlesPage?: ArticlesPageSchema
+    articleDetailsPage?: ArticleDatilsPageSchema
 }
 
 
@@ -41,9 +41,9 @@ export interface CombinedState {
     loginForm?: undefined;
     profile?: undefined;
     articleDetails?: undefined;
-    articleDetailsComments?: undefined;
     addCommentForm?: undefined;
     articlesPage?: undefined;
+    articleDetailsPage?: undefined;
 }
 
 export interface ReduxStoreWithReducerManager extends EnhancedStore<StateSchema> {
