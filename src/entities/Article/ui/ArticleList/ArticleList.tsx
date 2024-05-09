@@ -25,18 +25,37 @@ interface ArticleListProps {
   onLoadNextPart?: () => void;
 }
 
-
 const getSkeletons = (view: ArticleView) => {
   return new Array(view === ArticleView.SMALL ? 9 : 4)
     .fill(0)
     .map((_, index) => (
       <ArticleListItemSkeleton
-        className={cls.skeleton}
+        className={view === ArticleView.SMALL ? cls.skeleton : cls.skeletonBig}
         key={index}
         view={view}
       />
     ));
 };
+
+const ItemContainerComp = ({
+  // @ts-ignore
+  height,
+  // @ts-ignore
+  width,
+  index,
+}: {
+  height: number;
+  width: number;
+  index: number;
+}) => (
+  <div className={cls.itemsWrapper}>
+    <ArticleListItemSkeleton
+      className={cls.skeleton}
+      key={index}
+      view={ArticleView.SMALL}
+    />
+  </div>
+);
 
 export const ArticleList = memo(
   ({
@@ -80,30 +99,10 @@ export const ArticleList = memo(
 
     const Footer = memo(() => {
       if (isLoading) {
-        return <div className={cls.skeleton}>{getSkeletons(view)}</div>;
+        return <>{getSkeletons(view)}</>;
       }
       return null;
     });
-
-    const ItemContainerComp = ({
-      // @ts-ignore
-      height,
-      // @ts-ignore
-      width,
-      index,
-    }: {
-      height: number;
-      width: number;
-      index: number;
-    }) => (
-      <div className={cls.itemsWrapper}>
-        <ArticleListItemSkeleton
-          className={cls.skeleton}
-          key={index}
-          view={ArticleView.SMALL}
-        />
-      </div>
-    );
 
     const renderArticle = (index: number, article: Article) => {
       return (
