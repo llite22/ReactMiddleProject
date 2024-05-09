@@ -22,8 +22,8 @@ import { Text, TextAlign, TextTheme } from "@/shared/ui/Text/Text";
 import { Page } from "@/widgets/Page/Page";
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
-import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 import { useSearchParams } from "react-router-dom";
+import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 
 interface ArticlesPageProps {
   className?: string;
@@ -62,7 +62,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
       </Page>
     );
   }
-    
+
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page

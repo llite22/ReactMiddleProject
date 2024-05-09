@@ -17,16 +17,18 @@ import { useTranslation } from "react-i18next";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
+import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from "@/shared/const/localstorage";
 
 interface ArticleListItemProps {
   className?: string;
   article: Article;
   view: ArticleView;
   target?: HTMLAttributeAnchorTarget;
+  index: number;
 }
 
 export const ArticleListItem = memo(
-  ({ className, article, view, target }: ArticleListItemProps) => {
+  ({ className, article, view, target, index }: ArticleListItemProps) => {
     const { t } = useTranslation("article");
     const types = <Text text={article.type.join(", ")} className={cls.types} />;
     const views = (
@@ -35,7 +37,13 @@ export const ArticleListItem = memo(
         <Icon Svg={EyeIcon} />
       </>
     );
-
+    const handleButtonClick = () => {
+      sessionStorage.setItem(
+        ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
+        JSON.stringify(index)
+      );
+      console.log(index);
+    };
     if (view === ArticleView.BIG) {
       let textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT
@@ -68,7 +76,9 @@ export const ArticleListItem = memo(
                 target={target}
                 to={RoutePath.article_details + article.id}
               >
-                <Button theme={ThemeButton.OUTLINE}>{t("Читать далее")}</Button>
+                <Button onClick={handleButtonClick} theme={ThemeButton.OUTLINE}>
+                  {t("Читать далее")}
+                </Button>
               </AppLink>
               {views}
             </div>
@@ -83,7 +93,7 @@ export const ArticleListItem = memo(
         to={RoutePath.article_details + article.id}
         className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
       >
-        <Card>
+        <Card onClick={handleButtonClick}>
           <div className={cls.imageWrapper}>
             <img src={article.img} alt={article.title} className={cls.img} />
             <Text text={article.createdAt} className={cls.date} />
