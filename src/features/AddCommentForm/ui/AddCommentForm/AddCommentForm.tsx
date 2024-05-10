@@ -19,6 +19,7 @@ import {
   ReducerList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { Text, TextAlign, TextTheme } from "@/shared/ui/Text/Text";
+import { HStack } from "@/shared/ui/Stack";
 
 interface addCommentFormProps {
   className?: string;
@@ -49,21 +50,23 @@ const addCommentForm = memo(
     }, [onSendComment, onCommentTextChange, text]);
 
     if (error) {
-        return (
-          <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
-            <Text
-              theme={TextTheme.ERROR}
-              title={t("Произошла ошибка при загрузке комментария")}
-              text={t("Попробуйте обновить страницу")}
-              align={TextAlign.CENTER}
-            />
-          </div>
-        );
-      }
+      return (
+        <div
+          className={classNames(cls.ProfileCard, {}, [className, cls.error])}
+        >
+          <Text
+            theme={TextTheme.ERROR}
+            title={t("Произошла ошибка при загрузке комментария")}
+            text={t("Попробуйте обновить страницу")}
+            align={TextAlign.CENTER}
+          />
+        </div>
+      );
+    }
 
     return (
       <DynamicModuleLoader reducers={reducer}>
-        <div className={classNames(cls.addCommentForm, {}, [className])}>
+        <HStack max className={classNames(cls.addCommentForm, {}, [className])}>
           <Input
             placeholder={t("Введите текст комментария")}
             value={text}
@@ -73,7 +76,7 @@ const addCommentForm = memo(
           <Button onClick={onSendCommentHandle} theme={ThemeButton.OUTLINE}>
             {t("Отправить")}
           </Button>
-        </div>
+        </HStack>
       </DynamicModuleLoader>
     );
   }

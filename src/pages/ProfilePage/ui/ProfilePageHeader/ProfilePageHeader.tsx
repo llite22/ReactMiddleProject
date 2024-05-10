@@ -1,5 +1,4 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
-import cls from "./ProfilePageHeader.module.scss";
 import { Text } from "@/shared/ui/Text/Text";
 import { Button, ThemeButton } from "@/shared/ui/Button/Button";
 import { useTranslation } from "react-i18next";
@@ -13,6 +12,7 @@ import {
   updateProfileData,
 } from "@/entities/Profile";
 import { getUserAuthData } from "@/entities/User";
+import { HStack } from "@/shared/ui/Stack/HStack/HStack";
 
 interface ProfilePageHeaderProps {
   className?: string;
@@ -39,38 +39,35 @@ export const ProfilePageHeader = ({ className }: ProfilePageHeaderProps) => {
   }, [dispatch]);
 
   return (
-    <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
+    <HStack max justify={"between"} className={classNames("", {}, [className])}>
       <Text title={t("Профиль")} />
       {canEdit && (
-        <div className={cls.btnsWrapper}>
+        <>
           {readonly ? (
             <Button
               onClick={onEdit}
-              className={cls.editBtn}
               theme={ThemeButton.OUTLINE}
             >
               {t("Редактировать")}
             </Button>
           ) : (
-            <>
+            <HStack gap={"8"}>
               <Button
                 onClick={onCancelEdit}
-                className={cls.editBtn}
                 theme={ThemeButton.OUTLINE_RED}
               >
                 {t("Отменить")}
               </Button>
               <Button
                 onClick={onSave}
-                className={cls.saveBtn}
                 theme={ThemeButton.OUTLINE}
               >
                 {t("Сохранить")}
               </Button>
-            </>
+            </HStack>
           )}
-        </div>
+        </>
       )}
-    </div>
+    </HStack>
   );
 };
