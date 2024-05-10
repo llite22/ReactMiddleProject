@@ -1,14 +1,15 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./AppLink.module.scss";
-import { NavLink, NavLinkProps } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 import { HTMLAttributeAnchorTarget, memo, ReactNode } from "react";
 
 export enum AppLinkTheme {
   PRIMARY = "primary",
   SECONDARY = "secondary",
+  RED = "red",
 }
 
-interface AppLinkProps extends NavLinkProps {
+interface AppLinkProps extends LinkProps {
   className?: string;
   theme?: AppLinkTheme;
   children: ReactNode;
@@ -22,14 +23,16 @@ export const AppLink = memo((props: AppLinkProps) => {
     children,
     theme = AppLinkTheme.PRIMARY,
     target,
+    ...otherProps
   } = props;
   return (
-    <NavLink
+    <Link
       to={to}
       target={target}
       className={classNames(cls.AppLink, {}, [className, cls[theme]])}
+      {...otherProps}
     >
       {children}
-    </NavLink>
+    </Link>
   );
 });

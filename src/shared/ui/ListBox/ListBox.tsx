@@ -9,6 +9,7 @@ import cls from "./ListBox.module.scss";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Button } from "../Button/Button";
 import { HStack } from "../Stack";
+import { DropDownDirection } from "@/shared/types/ui";
 
 export interface ListBoxItem {
   value: string;
@@ -16,7 +17,7 @@ export interface ListBoxItem {
   disabled?: boolean;
 }
 
-type DropDownDirection = "top" | "bottom";
+
 
 interface ListBoxProps {
   items?: ListBoxItem[];
@@ -30,9 +31,12 @@ interface ListBoxProps {
 }
 
 const mapDirectionClass: Record<DropDownDirection, string> = {
-  bottom: cls.optionBottom,
-  top: cls.optionTop,
+  "bottom left": cls.optionBottomLeft,
+  "bottom right": cls.optionBottomRight,
+  "top left": cls.optionTopLeft,
+  "top right": cls.optionTopRight,
 };
+
 export function ListBox({
   className,
   items,
@@ -40,7 +44,7 @@ export function ListBox({
   defaultValue,
   onChange,
   readonly,
-  direction = "bottom",
+  direction = "bottom left",
   label,
 }: ListBoxProps) {
   const optionsClasses = [mapDirectionClass[direction]];
