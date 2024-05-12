@@ -3,6 +3,7 @@ import cls from "./ArticleList.module.scss";
 import { Article, ArticleView } from "../../model/types/article";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import {
+  Fragment,
   HTMLAttributeAnchorTarget,
   memo,
   useEffect,
@@ -23,6 +24,7 @@ interface ArticleListProps {
   view?: ArticleView;
   target?: HTMLAttributeAnchorTarget;
   onLoadNextPart?: () => void;
+  virtualized?: boolean;
 }
 
 const getSkeletons = (view: ArticleView) => {
@@ -64,6 +66,7 @@ export const ArticleList = memo(
     isLoading,
     target,
     view = ArticleView.SMALL,
+    virtualized = true,
   }: ArticleListProps) => {
     const [selectedArticleId, setSelectedArticleId] = useState<number>(1);
     const virtuosoGridRef = useRef<VirtuosoGridHandle>(null);
@@ -116,35 +119,57 @@ export const ArticleList = memo(
         />
       );
     };
-    
+
     return (
-      <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-        {view === ArticleView.BIG ? (
-          <Virtuoso
-            style={{ height: "100%" }}
-            data={articles}
-            itemContent={renderArticle}
-            totalCount={articles.length}
-            customScrollParent={document.getElementById(PAGE_ID) as HTMLElement}
-            initialTopMostItemIndex={selectedArticleId}
-            components={{ Footer }}
-          />
-        ) : (
-          <VirtuosoGrid
-            ref={virtuosoGridRef}
-            totalCount={articles.length}
-            customScrollParent={document.getElementById(PAGE_ID) as HTMLElement}
-            components={{ ScrollSeekPlaceholder: ItemContainerComp, Footer }}
-            data={articles}
-            itemContent={renderArticle}
-            listClassName={cls.itemsWrapper}
-            scrollSeekConfiguration={{
-              enter: (velocity) => Math.abs(velocity) > 200,
-              exit: (velocity) => Math.abs(velocity) < 30,
-            }}
-          />
+      <>
+        <div
+          className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+        >
+          {virtualized ? (
+            view === ArticleView.BIG ? (
+              <Virtuoso
+                style={{ height: "100%" }}
+                data={articles}
+                itemContent={renderArticle}
+                totalCount={articles.length}
+                customScrollParent={
+                  document.getElementById(PAGE_ID) as HTMLElement
+                }
+                initialTopMostItemIndex={selectedArticleId}
+                components={{ Footer }}
+              />
+            ) : (
+              <VirtuosoGrid
+                ref={virtuosoGridRef}
+                totalCount={articles.length}
+                customScrollParent={
+                  document.getElementById(PAGE_ID) as HTMLElement
+                }
+                components={{
+                  ScrollSeekPlaceholder: ItemContainerComp,
+                  Footer,
+                }}
+                data={articles}
+                itemContent={renderArticle}
+                listClassName={cls.itemsWrapper}
+                scrollSeekConfiguration={{
+                  enter: (velocity) => Math.abs(velocity) > 200,
+                  exit: (velocity) => Math.abs(velocity) < 30,
+                }}
+              />
+            )
+          ) : null}
+        </div>
+        {!virtualized && (
+          <div className={cls.recommendCard}>
+            {articles.map((item) => (
+              <Fragment key={item.id}>
+                <ArticleListItem article={item} view={view} target={target} />
+              </Fragment>
+            ))}
+          </div>
         )}
-      </div>
+      </>
     );
   }
 );

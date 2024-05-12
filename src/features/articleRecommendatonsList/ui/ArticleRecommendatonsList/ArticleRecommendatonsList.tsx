@@ -1,6 +1,6 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Text, TextAlign, TextSize, TextTheme } from "@/shared/ui/Text/Text";
-import { ArticleList } from "@/entities/Article";
+import { ArticleList, ArticleView } from "@/entities/Article";
 import { useTranslation } from "react-i18next";
 import { VStack } from "@/shared/ui/Stack";
 import { useArticleRecommendationsList } from "../../api/apiRecommendations";
@@ -33,11 +33,12 @@ export const ArticleRecommendatonsList = memo(
     return (
       <VStack gap={"8"} className={classNames("", {}, [className])}>
         <Text size={TextSize.L} title={t("Рекомендуем")} />
-        {articles && <ArticleList isLoading={isLoading} articles={articles} />}
         <ArticleList
           isLoading={isLoading}
           articles={articles || []}
           target={"_blank"}
+          virtualized={false}
+          view={ArticleView.SMALL}
         />
       </VStack>
     );

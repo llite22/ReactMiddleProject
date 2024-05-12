@@ -24,7 +24,7 @@ interface ArticleListItemProps {
   article: Article;
   view: ArticleView;
   target?: HTMLAttributeAnchorTarget;
-  index: number;
+  index?: number;
 }
 
 export const ArticleListItem = memo(
@@ -42,8 +42,8 @@ export const ArticleListItem = memo(
         ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX,
         JSON.stringify(index)
       );
-      console.log(index);
     };
+
     if (view === ArticleView.BIG) {
       let textBlock = article.blocks.find(
         (block) => block.type === ArticleBlockType.TEXT
@@ -56,7 +56,7 @@ export const ArticleListItem = memo(
             cls[view],
           ])}
         >
-          <Card className={cls.card}>
+          <Card>
             <div className={cls.header}>
               <Avatar size={30} src={article.user.avatar} />
               <Text text={article.user.username} className={cls.username} />
@@ -91,7 +91,7 @@ export const ArticleListItem = memo(
       <AppLink
         target={target}
         to={RoutePath.article_details + article.id}
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+        className={classNames('', {}, [className, cls[view]])}
       >
         <Card onClick={handleButtonClick}>
           <div className={cls.imageWrapper}>
