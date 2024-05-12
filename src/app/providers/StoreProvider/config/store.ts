@@ -5,16 +5,18 @@ import { userReducer } from '@/entities/User'
 import { createReducerManager } from './reducerManager'
 import { $api } from '@/shared/api/api'
 import { scrollSaveReducer } from '@/widgets/Page/ScrollSave'
+import { rtkApi } from '@/shared/api/rtkApi'
 
 export function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
-    const rootReducer: ReducersMapObject<StateSchema> = {
+    const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
-        scrollSave: scrollSaveReducer
+        scrollSave: scrollSaveReducer,
+        [rtkApi.reducerPath]: rtkApi.reducer
     }
 
-    const reducerManager = createReducerManager(rootReducer)
+    const reducerManager = createReducerManager(rootReducers)
 
     const store = configureStore({
         reducer: reducerManager.reduce as Reducer<StateSchema, UnknownAction>,
@@ -26,7 +28,7 @@ export function createReduxStore(initialState?: StateSchema, asyncReducers?: Red
                     api: $api,
                 }
             }
-        })
+        }).concat(rtkApi.middleware)
     })
     /* @ts-ignore */
     store.reducerManager = reducerManager

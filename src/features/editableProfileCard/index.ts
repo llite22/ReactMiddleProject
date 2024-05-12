@@ -1,0 +1,1 @@
+export type { ProfileSchema, ValidateProfileError } from './model/types/editableProfileCardSchema'
