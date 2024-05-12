@@ -42,7 +42,7 @@ export const EditableProfileCard = ({
   const error = useSelector(getProfileError);
   const readonly = useSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
-  const validateErrorTranslate = {
+  const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t("Серверная ошибка при сохранении"),
     [ValidateProfileError.INCORRECT_USER_DATA]: t("Имя и фамилия обязательны"),
     [ValidateProfileError.INCORRECT_AGE]: t("Некорректный возраст"),
@@ -120,7 +120,7 @@ export const EditableProfileCard = ({
           validateErrors.map((err) => (
             <Text
               theme={TextTheme.ERROR}
-              text={validateErrorTranslate[err]}
+              text={validateErrorTranslates[err]}
               key={err}
             />
           ))}
