@@ -1,6 +1,5 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticleDetailsPage.module.scss";
-import { useTranslation } from "react-i18next";
 import { memo } from "react";
 import { ArticleDetails } from "@/entities/Article";
 import { useParams } from "react-router-dom";
@@ -14,7 +13,6 @@ import { VStack } from "@/shared/ui/Stack";
 import { ArticleRecommendatonsList } from "@/features/articleRecommendatonsList";
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
 import { ArticleDetailsComments } from "../ArticleDetailsComments/ArticleDetailsComments";
-import { Text } from "@/shared/ui/Text/Text";
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -25,12 +23,7 @@ const reducers: ReducerList = {
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
-  const { t } = useTranslation("article");
   const { id } = useParams<{ id: string }>();
-
-  if (!id) {
-    return <Text text={t("Статья не найдена")} />;
-  }
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

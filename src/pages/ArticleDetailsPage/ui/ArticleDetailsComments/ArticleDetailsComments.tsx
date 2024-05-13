@@ -6,11 +6,12 @@ import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { AddCommentForm } from "@/features/AddCommentForm";
 import { CommentList } from "@/entities/Comment";
-import { useCallback, useEffect } from "react";
+import { Suspense, useCallback, useEffect } from "react";
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 import { useTranslation } from "react-i18next";
 import { VStack } from "@/shared/ui/Stack";
+import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 
 interface ArticleDetailsCommentsProps {
   className?: string;
@@ -40,7 +41,9 @@ export const ArticleDetailsComments = ({
   return (
     <VStack gap={"16"} max className={classNames("", {}, [className])}>
       <Text size={TextSize.L} title={t("Комментарии")} />
-      <AddCommentForm onSendComment={onSendComment} />
+      <Suspense fallback={<Skeleton width={"100%"} height={200} />}>
+        <AddCommentForm onSendComment={onSendComment} />
+      </Suspense>
       <CommentList comments={comments} isLoading={commentsIsLoading} />
     </VStack>
   );
