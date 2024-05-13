@@ -7,17 +7,17 @@ import {
 import { Fragment, ReactNode } from "react";
 import cls from "./ListBox.module.scss";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button } from "../Button/Button";
-import { HStack } from "../Stack";
+import { Button } from "../../../Button/Button";
+import { HStack } from "../../../Stack";
 import { DropDownDirection } from "@/shared/types/ui";
+import { mapDirectionClass } from "../../styles/consts";
+import popupCls from "../../styles/popup.module.scss";
 
 export interface ListBoxItem {
   value: string;
   content: ReactNode;
   disabled?: boolean;
 }
-
-
 
 interface ListBoxProps {
   items?: ListBoxItem[];
@@ -29,13 +29,6 @@ interface ListBoxProps {
   direction?: DropDownDirection;
   label?: string;
 }
-
-const mapDirectionClass: Record<DropDownDirection, string> = {
-  "bottom left": cls.optionBottomLeft,
-  "bottom right": cls.optionBottomRight,
-  "top left": cls.optionTopLeft,
-  "top right": cls.optionTopRight,
-};
 
 export function ListBox({
   className,
@@ -56,11 +49,11 @@ export function ListBox({
       <HListBox
         disabled={readonly}
         as={"div"}
-        className={classNames(cls.ListBox, {}, [className])}
+        className={classNames(cls.ListBox, {}, [className, popupCls.popup])}
         value={value}
         onChange={onChange}
       >
-        <ListboxButton disabled={readonly} className={cls.trigger}>
+        <ListboxButton disabled={readonly} className={popupCls.trigger}>
           <Button disabled={readonly}>{value ?? defaultValue}</Button>
         </ListboxButton>
         <ListboxOptions className={classNames(cls.options, {}, optionsClasses)}>
@@ -74,8 +67,8 @@ export function ListBox({
               {({ focus, selected }) => (
                 <li
                   className={classNames(cls.item, {
-                    [cls.focus]: focus,
-                    [cls.disabled]: item.disabled,
+                    [popupCls.focus]: focus,
+                    [popupCls.disabled]: item.disabled,
                   })}
                 >
                   {selected && "!"}
