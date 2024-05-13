@@ -19,7 +19,9 @@ export const CommentCard = memo(
   ({ className, comment, isLoading }: CommentCardProps) => {
     if (isLoading)
       return (
-        <div
+        <VStack
+          gap={"8"}
+          max
           className={classNames(cls.CommentCard, {}, [className, cls.loading])}
         >
           <div className={cls.header}>
@@ -27,7 +29,7 @@ export const CommentCard = memo(
             <Skeleton width={100} height={16} className={cls.username} />
           </div>
           <Skeleton className={cls.text} width={"100%"} height={50} />
-        </div>
+        </VStack>
       );
 
     if (!comment) return null;
