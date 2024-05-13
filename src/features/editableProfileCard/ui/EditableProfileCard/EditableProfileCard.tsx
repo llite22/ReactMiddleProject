@@ -14,13 +14,13 @@ import { getProfileValidateErrors } from "../../model/selectors/getProfileValida
 import { fetchProfileData } from "../../model/services/fetchProfileData/fetchPrfileData";
 import { profileActions, profileReducer } from "../../model/slice/profileSlice";
 import { ProfileCard } from "@/entities/Profile/ui/ProfileCard/ProfileCard";
-import { ValidateProfileError } from "../../model/types/editableProfileCardSchema";
 import {
   DynamicModuleLoader,
   ReducerList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { EditableProfileCardHeader } from "../EditableProfileCardHeader/EditableProfileCardHeader";
 import { VStack } from "@/shared/ui/Stack";
+import { ValidateProfileError } from "../../model/consts/consts";
 
 interface EditableProfileCardProps {
   className?: string;

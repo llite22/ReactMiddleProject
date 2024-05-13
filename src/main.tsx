@@ -5,8 +5,8 @@ import "./app/Styles/index.scss";
 import { ThemeProvider } from "./app/providers/ThemeProvider";
 import "./shared/config/i18n/i18n";
 import { ErrorBoundary } from "./app/providers/ErrorBoundary";
-import { PageError } from "./widgets/PageError/ui/PageError";
 import { StoreProvider } from "./app/providers/StoreProvider";
+import { PageError } from "./widgets/PageError/index.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>

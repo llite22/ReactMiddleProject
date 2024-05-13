@@ -3,9 +3,7 @@ import cls from "./ArticleListItem.module.scss";
 import { HTMLAttributeAnchorTarget, memo } from "react";
 import {
   Article,
-  ArticleBlockType,
   ArticleTextBlock,
-  ArticleView,
 } from "../../model/types/article";
 import { Text } from "@/shared/ui/Text/Text";
 import { Icon } from "@/shared/ui/Icon/Icon";
@@ -18,6 +16,7 @@ import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleT
 import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from "@/shared/const/localstorage";
+import { ArticleBlockType, ArticleView } from "../../model/consts/articleConsts";
 
 interface ArticleListItemProps {
   className?: string;

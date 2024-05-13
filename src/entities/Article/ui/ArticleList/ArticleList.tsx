@@ -1,6 +1,6 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticleList.module.scss";
-import { Article, ArticleView } from "../../model/types/article";
+import { Article } from "../../model/types/article";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import {
   Fragment,
@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import { Virtuoso, VirtuosoGrid, VirtuosoGridHandle } from "react-virtuoso";
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from "@/shared/const/localstorage";
 import { PAGE_ID } from "@/widgets/Page/Page";
+import { ArticleView } from "../../model/consts/articleConsts";
 
 interface ArticleListProps {
   className?: string;

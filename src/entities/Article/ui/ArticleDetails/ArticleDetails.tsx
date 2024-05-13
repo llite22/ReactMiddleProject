@@ -21,11 +21,12 @@ import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import EyeIcon from "@/shared/assets/icons/eye.svg?react";
 import CalendarIcon from "@/shared/assets/icons/calendar.svg?react";
 import { Icon } from "@/shared/ui/Icon/Icon";
-import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
+import { ArticleBlock } from "../../model/types/article";
 import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
 import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { HStack, VStack } from "@/shared/ui/Stack";
+import { ArticleBlockType } from "../../model/consts/articleConsts";
 
 interface ArticleDetailsProps {
   className?: string;
