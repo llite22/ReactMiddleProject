@@ -77,7 +77,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
   return (
     <Portal>
       <div
-        className={classNames(cls.Drawer, {}, [className, theme, "app_drawer"])}
+        className={classNames(cls.Drawer, {}, [className, theme])}
       >
         <Overlay onClick={close} />
         <Spring.a.div
