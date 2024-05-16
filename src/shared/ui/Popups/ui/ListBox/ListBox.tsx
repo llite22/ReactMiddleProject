@@ -53,7 +53,7 @@ export function ListBox({
         value={value}
         onChange={onChange}
       >
-        <ListboxButton disabled={readonly} className={popupCls.trigger}>
+        <ListboxButton as={"div"} disabled={readonly} className={popupCls.trigger}>
           <Button disabled={readonly}>{value ?? defaultValue}</Button>
         </ListboxButton>
         <ListboxOptions className={classNames(cls.options, {}, optionsClasses)}>

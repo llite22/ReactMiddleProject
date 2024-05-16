@@ -4,7 +4,7 @@ import cls from "./Drawer.module.scss";
 import { Portal } from "../Portal/Portal";
 import { useTheme } from "@/app/providers/ThemeProvider";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { useAnimationLibs } from "@/shared/lib/components/AnimationProvider";
+import { AnimationProvider, useAnimationLibs } from "@/shared/lib/components/AnimationProvider";
 
 interface DrawerProps {
   className?: string;
@@ -76,9 +76,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
 
   return (
     <Portal>
-      <div
-        className={classNames(cls.Drawer, {}, [className, theme])}
-      >
+      <div className={classNames(cls.Drawer, {}, [className, theme])}>
         <Overlay onClick={close} />
         <Spring.a.div
           className={cls.sheet}
@@ -92,7 +90,7 @@ export const DrawerContent = memo((props: DrawerProps) => {
   );
 });
 
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerAsync = (props: DrawerProps) => {
   const { isLoaded } = useAnimationLibs();
 
   if (!isLoaded) {
@@ -100,4 +98,12 @@ export const Drawer = memo((props: DrawerProps) => {
   }
 
   return <DrawerContent {...props} />;
-});
+};
+
+export const Drawer = (props: DrawerProps) => {
+  return (
+    <AnimationProvider>
+      <DrawerAsync {...props} />
+    </AnimationProvider>
+  );
+};

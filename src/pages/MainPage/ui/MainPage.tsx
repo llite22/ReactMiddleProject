@@ -1,4 +1,4 @@
-import { Counter } from "@/entities/Counter";
+import { RatingCard } from "@/entities/RatingCard";
 import { Page } from "@/widgets/Page/Page";
 import { memo } from "react";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,12 @@ const MainPage = () => {
 
   return (
     <Page>
-      {t("Главная")} <Counter />
+      {t("Главная")}
+      <RatingCard
+        title={t("Как вам статья?")}
+        feedbackTitle={t("Оставьте отзыв о статье")}
+        hasFeedback
+      />
     </Page>
   );
 };

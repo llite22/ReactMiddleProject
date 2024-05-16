@@ -29,7 +29,7 @@ export function Popover({
       as={"div"}
       className={classNames(cls.Popover, {}, [className, popupCls.popup])}
     >
-      <PopoverButton className={popupCls.trigger}>{trigger}</PopoverButton>
+      <PopoverButton as={"div"} className={popupCls.trigger}>{trigger}</PopoverButton>
       <PopoverPanel className={classNames(cls.panel, {}, menuClasses)}>
         {children}
       </PopoverPanel>
