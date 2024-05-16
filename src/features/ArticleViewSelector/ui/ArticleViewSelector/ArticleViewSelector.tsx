@@ -5,7 +5,7 @@ import ListBurgerIcon from "@/shared/assets/icons/viewburger.svg?react";
 import { Button, ThemeButton } from "@/shared/ui/Button/Button";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import { memo } from "react";
-import { ArticleView } from "../../model/consts/articleConsts";
+import { ArticleView } from "@/entities/Article";
 
 interface ArticleViewSelectorProps {
   className?: string;

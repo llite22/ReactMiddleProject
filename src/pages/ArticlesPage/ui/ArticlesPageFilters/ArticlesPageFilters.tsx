@@ -1,13 +1,6 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticlesPageFilters.module.scss";
-import {
-  ArticleSortField,
-  ArticleSortSelector,
-  ArticleType,
-  ArticleTypeTabs,
-  ArticleView,
-  ArticleViewSelector,
-} from "@/entities/Article";
+import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
 import { memo, useCallback } from "react";
 import { articlesPageActions } from "../../model/slices/articlesPageSlice";
 import { useSelector } from "react-redux";
@@ -25,6 +18,9 @@ import { Input } from "@/shared/ui/Input/Input";
 import { SortOrder } from "@/shared/types";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
+import { ArticleSortSelector } from "@/features/ArticleSortSelector";
+import { ArticleViewSelector } from "@/features/ArticleViewSelector";
+import { ArticleTypeTabs } from "@/features/ArticleTypeTabs";
 
 interface ArticlesPageFiltersProps {
   className?: string;
