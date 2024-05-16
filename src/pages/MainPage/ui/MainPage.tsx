@@ -6,16 +6,7 @@ import { useTranslation } from "react-i18next";
 const MainPage = () => {
   const { t } = useTranslation("main");
 
-  return (
-    <Page>
-      {t("Главная")}
-      <RatingCard
-        title={t("Как вам статья?")}
-        feedbackTitle={t("Оставьте отзыв о статье")}
-        hasFeedback
-      />
-    </Page>
-  );
+  return <Page>{t("Главная")}</Page>;
 };
 
 export default memo(MainPage);
