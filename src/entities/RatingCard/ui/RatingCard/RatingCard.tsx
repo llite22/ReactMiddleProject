@@ -66,7 +66,7 @@ export const RatingCard = ({
   );
 
   return (
-    <Card className={classNames(cls.RatingCard, {}, [className])}>
+    <Card className={classNames('', {}, [className])}>
       <VStack align="center" gap="8">
         <Text title={title} />
         <StarRating size={40} onSelect={onSelectStars} />
