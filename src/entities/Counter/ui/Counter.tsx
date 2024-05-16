@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/Button/Button";
-import { counterActions, useCounterActions } from "../model/slice/CounterSlice";
+import { useCounterActions } from "../model/slice/CounterSlice";
 import { useCounterValue } from "../model/selectors/getCounterValue/getCounterValue";
 
 export const Counter = () => {

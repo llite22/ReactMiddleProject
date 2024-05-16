@@ -4,7 +4,12 @@ import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { getUserAuthData, isUserAdmin, isUserManager, userActions } from "@/entities/User";
+import {
+  getUserAuthData,
+  isUserAdmin,
+  isUserManager,
+  userActions,
+} from "@/entities/User";
 import { useCallback } from "react";
 import { getRouteAdminPanel, getRouteProfile } from "@/shared/const/router";
 
@@ -31,7 +36,7 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
 
   return (
     <DropDown
-      className={classNames('', {}, [className])}
+      className={classNames("", {}, [className])}
       direction="bottom left"
       items={[
         ...(isAdminPanelAvailable
@@ -51,7 +56,7 @@ export const AvatarDropdown = ({ className }: AvatarDropdownProps) => {
           onClick: onLogout,
         },
       ]}
-      trigger={<Avatar size={30} src={authData.avatar} />}
+      trigger={<Avatar fallbackInverted size={30} src={authData.avatar} />}
     />
   );
 };

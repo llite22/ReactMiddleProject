@@ -1,10 +1,7 @@
 import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticleListItem.module.scss";
 import { HTMLAttributeAnchorTarget, memo } from "react";
-import {
-  Article,
-  ArticleTextBlock,
-} from "../../model/types/article";
+import { Article, ArticleTextBlock } from "../../model/types/article";
 import { Text } from "@/shared/ui/Text/Text";
 import { Icon } from "@/shared/ui/Icon/Icon";
 import EyeIcon from "@/shared/assets/icons/eye.svg?react";
@@ -15,8 +12,13 @@ import { useTranslation } from "react-i18next";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from "@/shared/const/localstorage";
-import { ArticleBlockType, ArticleView } from "../../model/consts/articleConsts";
+import {
+  ArticleBlockType,
+  ArticleView,
+} from "../../model/consts/articleConsts";
 import { getRouteArticleDetails } from "@/shared/const/router";
+import { AppImage } from "@/shared/ui/AppImage/AppImage";
+import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
 
 interface ArticleListItemProps {
   className?: string;
@@ -63,7 +65,12 @@ export const ArticleListItem = memo(
             </div>
             <Text title={article.title} className={cls.title} />
             {types}
-            <img src={article.img} className={cls.img} alt={article.title} />
+            <AppImage
+              fallback={<Skeleton width={"100%"} height={250} />}
+              src={article.img}
+              className={cls.img}
+              alt={article.title}
+            />
             {textBlock && (
               <ArticleTextBlockComponent
                 block={textBlock}
@@ -71,10 +78,7 @@ export const ArticleListItem = memo(
               />
             )}
             <div className={cls.footer}>
-              <AppLink
-                target={target}
-                to={getRouteArticleDetails(article.id)}
-              >
+              <AppLink target={target} to={getRouteArticleDetails(article.id)}>
                 <Button onClick={handleButtonClick} theme={ThemeButton.OUTLINE}>
                   {t("Читать далее")}
                 </Button>
@@ -90,11 +94,16 @@ export const ArticleListItem = memo(
       <AppLink
         target={target}
         to={getRouteArticleDetails(article.id)}
-        className={classNames('', {}, [className, cls[view]])}
+        className={classNames("", {}, [className, cls[view]])}
       >
         <Card onClick={handleButtonClick}>
           <div className={cls.imageWrapper}>
-            <img src={article.img} alt={article.title} className={cls.img} />
+            <AppImage
+              fallback={<Skeleton width={200} height={200} />}
+              src={article.img}
+              alt={article.title}
+              className={cls.img}
+            />
             <Text text={article.createdAt} className={cls.date} />
           </div>
           <div className={cls.infoWrapper}>
