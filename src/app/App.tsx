@@ -2,11 +2,11 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { Suspense, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { getUserInited, userActions } from "@/entities/User";
-import { useTheme } from "./providers/ThemeProvider/lib/useTheme";
 import { Navbar } from "@/widgets/Navbar";
 import { Sidebar } from "@/widgets/Sidebar";
 import { AppRouter } from "./providers/router";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useTheme } from "@/shared/lib/hooks/useTheme/useTheme";
 
 const App = () => {
   const { theme } = useTheme();

@@ -16,7 +16,7 @@ import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleT
 import { AppLink } from "@/shared/ui/AppLink/AppLink";
 import { ARTICLE_LIST_ITEM_LOCALSTORAGE_IDX } from "@/shared/const/localstorage";
 import { ArticleBlockType, ArticleView } from "../../model/consts/articleConsts";
-import { RoutePath } from "@/shared/const/router";
+import { getRouteArticleDetails } from "@/shared/const/router";
 
 interface ArticleListItemProps {
   className?: string;
@@ -73,7 +73,7 @@ export const ArticleListItem = memo(
             <div className={cls.footer}>
               <AppLink
                 target={target}
-                to={RoutePath.article_details + article.id}
+                to={getRouteArticleDetails(article.id)}
               >
                 <Button onClick={handleButtonClick} theme={ThemeButton.OUTLINE}>
                   {t("Читать далее")}
@@ -89,7 +89,7 @@ export const ArticleListItem = memo(
     return (
       <AppLink
         target={target}
-        to={RoutePath.article_details + article.id}
+        to={getRouteArticleDetails(article.id)}
         className={classNames('', {}, [className, cls[view]])}
       >
         <Card onClick={handleButtonClick}>
