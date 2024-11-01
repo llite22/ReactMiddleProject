@@ -1,8 +1,8 @@
-@import "reset";
-@import "variables/global.scss";
-@import "themes/normal.scss";
-@import "themes/dark.scss";
-@import "themes/orange.scss";
+@use "reset";
+@use "variables/global.scss";
+@use "themes/normal.scss";
+@use "themes/dark.scss";
+@use "themes/orange.scss";
 
 body {
   font: var(--font-m);
